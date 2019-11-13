@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+$body-size: 13px
+$input-radius: 2px
+
+@import 'bulma'
+
+.image-4-3
+    display: block
+    position: relative
+    padding-top: 75%
+    overflow: hidden
+#print
+    display: none!important
+@media print
+    @page
+        margin: 0!important
+        padding: 0!important
+    body
+        margin: 0!important
+        padding: 0!important
+    body > :not(#print)
+        visibility: hidden
+        display: none
+    #print
+        visibility: visible!important
+        display: block!important
+    #print *
+        visibility: visible!important

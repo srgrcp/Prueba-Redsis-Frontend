@@ -1,0 +1,223 @@
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half">
+                <h1 class="title">Registrar Accidente</h1>
+                <div [class.is-hidden]="emplSel" class="field">
+                    <label class="label" for="empleado">Empleado</label>
+                    <div class="control">
+                        <input [(ngModel)]="emplInput" (change)="setEmpleado()" name="emplInput" class="input"
+                            type="text" name="empleado" id="empleado" list="empleadolist">
+                    </div>
+                </div>
+                <label [class.is-hidden]="!emplSel" class="label" for="empleado">Empleado</label>
+                <div [class.is-hidden]="!emplSel" class="field is-grouped">
+                    <div class="control">
+                        <input [(ngModel)]="emplSel" name="emplSel" class="input" type="text" readonly>
+                    </div>
+                    <div class="control">
+                        <button type="button" (click)="emplInput = undefined;emplSel = undefined"
+                            class="button is-link is-light">Cambiar</button>
+                    </div>
+                </div>
+                <datalist id="empleadolist">
+                    <option *ngFor="let emp of list" [value]="emp.id">{{emp.cedula}} {{emp.nombre}}</option>
+                </datalist>
+
+                <form [class.is-hidden]="!emplSel" #accForm="ngForm" (ngSubmit)="submit()">
+                    <div class="field">
+                        <label class="label" for="gravedad">Gravedad del Accidente</label>
+                        <div class="control">
+                            <div class="select">
+                                <select [(ngModel)]="accidente.gravedad" name="gravedad" id="gravedad" required>
+                                    <option [value]="undefined" disabled>Seleccionar una opcion</option>
+                                    <option [value]="1">Accidente alta inmediata</option>
+                                    <option [value]="2">Accidente grave</option>
+                                    <option [value]="3">Accidente leve</option>
+                                    <option [value]="4">Accidente mortal</option>
+                                    <option [value]="5">Incidente</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="fecha">Fecha y Hora del Evento</label>
+                        <div class="control">
+                            <input (change)="checkDate()" [(ngModel)]="accidente.fecha" class="input"
+                                type="datetime-local" id="fecha" name="fecha" required>
+                        </div>
+                    </div>
+                    <article [class.is-hidden]="validDate || !accidente.fecha" class="message is-warning">
+                        <div class="message-body">
+                            La fecha del accidente debe ser igual o más reciente que la fecha de ingreso del empleado.
+                        </div>
+                    </article>
+                    <div class="field">
+                        <label class="label" for="lugar">Sitio donde ocurrio el accidente</label>
+                        <div class="control">
+                            <textarea [(ngModel)]="accidente.lugar" class="textarea" name="lugar" id="lugar" cols="30"
+                                rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="tipo">Tipo de Accidente</label>
+                        <div class="control">
+                            <div class="select">
+                                <select [(ngModel)]="accidente.tipo" name="tipo" id="tipo" required>
+                                    <option [value]="undefined" disabled>Seleccionar una opcion</option>
+                                    <option [value]="1">Deportivo</option>
+                                    <option [value]="2">Propios del trabajo</option>
+                                    <option [value]="3">Recreativo o cultural</option>
+                                    <option [value]="4">Transito</option>
+                                    <option [value]="5">Violencia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="lesion">Lesion del Accidente</label>
+                        <div class="control">
+                            <div class="select">
+                                <select [(ngModel)]="accidente.lesion" name="lesion" id="lesion" required>
+                                    <option [value]="undefined" disabled>Seleccionar una opcion</option>
+                                    <option [value]="1">Amputacion</option>
+                                    <option [value]="2">Aplastamiento</option>
+                                    <option [value]="3">Asfixia</option>
+                                    <option [value]="4">Conmocion</option>
+                                    <option [value]="5">Efecto de electricidad</option>
+                                    <option [value]="6">Efectos del Clima</option>
+                                    <option [value]="7">Envenenamiento</option>
+                                    <option [value]="8">Esguince</option>
+                                    <option [value]="9">Fractura</option>
+                                    <option [value]="10">Golpe</option>
+                                    <option [value]="11">Herida</option>
+                                    <option [value]="12">Intoxicacion</option>
+                                    <option [value]="13">Quemadura</option>
+                                    <option [value]="14">Salpicadura</option>
+                                    <option [value]="15">Torcedura</option>
+                                    <option [value]="16">Trauma</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="parte">Parte del Cuerpo Afectada</label>
+                        <div class="control">
+                            <div class="select">
+                                <select [(ngModel)]="accidente.parte" name="parte" id="parte" required>
+                                    <option [value]="undefined" disabled>Seleccionar una opcion</option>
+                                    <option [value]="1">Abdomen</option>
+                                    <option [value]="2">Cabeza</option>
+                                    <option [value]="3">Cara</option>
+                                    <option [value]="4">Cuello</option>
+                                    <option [value]="5">Lesiones Generales</option>
+                                    <option [value]="6">Manos</option>
+                                    <option [value]="7">Miembros Inferiores</option>
+                                    <option [value]="8">Miembros Superiores</option>
+                                    <option [value]="9">Ojos</option>
+                                    <option [value]="10">Pies</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="agente">Agente</label>
+                        <div class="control">
+                            <div class="select">
+                                <select [(ngModel)]="accidente.agente" name="agente" id="agente" required>
+                                    <option [value]="undefined" disabled>Seleccionar una opcion</option>
+                                    <option [value]="1">No Clasificado</option>
+                                    <option [value]="2">Ambiente del Trabajo</option>
+                                    <option [value]="3">Animales</option>
+                                    <option [value]="4">Aparatos</option>
+                                    <option [value]="5">Caidas de Personas</option>
+                                    <option [value]="6">Herramientas</option>
+                                    <option [value]="7">Maquinarias y/o Equipos</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="mecanismo">Mecanismo</label>
+                        <div class="control">
+                            <div class="select">
+                                <select [(ngModel)]="accidente.mecanismo" name="mecanismo" id="mecanismo" required>
+                                    <option [value]="undefined" disabled>Seleccionar una opcion</option>
+                                    <option [value]="1">Atrapamiento</option>
+                                    <option [value]="2">Caidas de Objetos</option>
+                                    <option [value]="3">Caidas de Personas</option>
+                                    <option [value]="4">Exposicion de electricidad</option>
+                                    <option [value]="5">Exposicion de Radiacion</option>
+                                    <option [value]="6">Exposicion de Temperatura</option>
+                                    <option [value]="7">Pisadas</option>
+                                    <option [value]="8">Choques</option>
+                                    <option [value]="9">Golpes</option>
+                                    <option [value]="10">Sobre esfuerzo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="descripcion">Descripcion del Accidente</label>
+                        <div class="control">
+                            <textarea [(ngModel)]="accidente.descripcion" class="textarea" name="descripcion"
+                                id="descripcion" cols="30" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="checkbox" for="incapacidad">
+                            <input [(ngModel)]="accidente.incapacidad" type="checkbox" name="incapacidad"
+                                id="incapacidad"> Hubo Incapacidad
+                        </label>
+                    </div>
+                    <div [class.is-hidden]="!accidente.incapacidad" class="field">
+                        <label class="label" for="diasincapacidad">Dias de Incapacidad</label>
+                        <div class="control">
+                            <input [(ngModel)]="accidente.diasincapacidad" id="diasincapacidad" name="diasincapacidad"
+                                class="input" type="number" step="1" max="100" min="1"
+                                [required]="accidente.incapacidad">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="image" class="label">Imagenes</label>
+                        <div class="field">
+                            <div class="file has-text-centered is-boxed is-fullwidth is-large is-link">
+                                <label class="file-label">
+                                    <input accept="image/*"
+                                        (change)="inputFile($event.target.files);$event.target.value = null"
+                                        class="file-input" type="file" name="resume" multiple>
+                                    <span class="file-cta">
+                                        <span class="file-icon">
+                                            &#8756;
+                                        </span>
+                                        <span class="file-label">
+                                            {{images.length==0?'Subir Fotos':'Agregar más fotos'}}
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control" style="display: flex;flex-wrap: wrap;">
+                                <div *ngFor="let image of images; let i = index" style="width: 100px;margin: 5px">
+                                    <div *ngIf="image.url != ''" class="image-4-3 notification"
+                                        [style.background]="'url('+image.url+')'"
+                                        [style.background-position]="'center'" [style.background-size]="'cover'"
+                                        [style.margin-bottom]="'0'">
+                                        <button (click)="images.splice(i, 1)" class="delete"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button [disabled]="!accForm.form.valid || !validDate" [class.is-loading]="loading"
+                                class="button is-link">Registrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

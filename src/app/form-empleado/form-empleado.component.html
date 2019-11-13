@@ -1,0 +1,77 @@
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half">
+                <h1 class="title">Registrar Empleado</h1>
+                <form #empForm="ngForm" (ngSubmit)="formSubmit()">
+                    <div class="field">
+                        <label class="label" for="cedula">Cédula</label>
+                        <div class="control">
+                            <input [(ngModel)]="empleado.cedula" class="input" id="cedula" name="cedula" type="number"
+                                required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="nombre">Nombre</label>
+                        <div class="control">
+                            <input [(ngModel)]="empleado.nombre" class="input" id="nombre" name="nombre" type="text"
+                                required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="correo">Correo</label>
+                        <div class="control">
+                            <input [(ngModel)]="empleado.correo" class="input" id="correo" name="correo" type="email"
+                                required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="nacimiento">Fecha de Nacimiento</label>
+                        <div class="control">
+                            <input [(ngModel)]="empleado.nacimiento" class="input" id="nacimiento" name="nacimiento"
+                                type="date" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="sexo">Sexo</label>
+                        <div class="control">
+                            <div class="select">
+                                <select [(ngModel)]="empleado.sexo" name="sexo" id="sexo">
+                                    <option [value]="undefined" disabled>Seleccionar una opción</option>
+                                    <option [value]="1">Femenino</option>
+                                    <option [value]="2">Masculino</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="area">Area</label>
+                        <div class="control">
+                            <input [(ngModel)]="empleado.area" class="input" type="text" name="area" id="area" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="cargo">Cargo</label>
+                        <div class="control">
+                            <input [(ngModel)]="empleado.cargo" class="input" id="cargo" name="cargo" type="text"
+                                required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="ingreso">Fecha de Ingreso</label>
+                        <div class="control">
+                            <input [(ngModel)]="empleado.ingreso" class="input" id="ingreso" name="ingreso" type="date"
+                                required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button [disabled]="!empForm.form.valid" [class.is-loading]="loading"
+                                class="button is-link">Registrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

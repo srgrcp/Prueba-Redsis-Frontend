@@ -1,0 +1,149 @@
+<section class="section">
+    <div class="container">
+        <div id="printacc">
+            <h1 class="title">Informe de Accidente</h1>
+            <table *ngIf="empleado" class="table is-fullwidth">
+                <tbody>
+                    <tr>
+                        <th colspan="6">Datos de Empleado</th>
+                    </tr>
+                    <tr>
+                        <th>Cédula:</th>
+                        <td>{{empleado.cedula}}</td>
+                        <th>Nombre:</th>
+                        <td>{{empleado.nombre}}</td>
+                        <th>Correo:</th>
+                        <td>{{empleado.correo}}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha Nacimiento:</th>
+                        <td>{{empleado.nacimiento | date}}</td>
+                        <th>Sexo</th>
+                        <td [ngSwitch]="empleado.sexo">
+                            <span *ngSwitchCase="1">Femenino</span>
+                            <span *ngSwitchCase="2">Masculino</span>
+                        </td>
+                        <th>Area:</th>
+                        <td>{{empleado.area}}</td>
+                    </tr>
+                    <tr>
+                        <th>Cargo:</th>
+                        <td>{{empleado.cargo}}</td>
+                        <th>Fecha Ingreso:</th>
+                        <td>{{empleado.ingreso | date}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="6">Datos del Accidente</th>
+                    </tr>
+                    <tr>
+                        <th>Gravedad:</th>
+                        <td [ngSwitch]="accidente.gravedad">
+                            <span *ngSwitchCase="1">Accidente alta inmediata</span>
+                            <span *ngSwitchCase="2">Accidente grave</span>
+                            <span *ngSwitchCase="3">Accidente leve</span>
+                            <span *ngSwitchCase="4">Accidente mortal</span>
+                            <span *ngSwitchCase="5">Incidente</span>
+                        </td>
+                        <th>Fecha y Hora:</th>
+                        <td>{{accidente.fecha | date}}</td>
+                        <th>Sitio del Accidente:</th>
+                        <td>{{accidente.lugar}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo de Accidente:</th>
+                        <td [ngSwitch]="accidente.tipo">
+                            <span *ngSwitchCase="1">Deportivo</span>
+                            <span *ngSwitchCase="2">Propios del trabajo</span>
+                            <span *ngSwitchCase="3">Recreativo o cultural</span>
+                            <span *ngSwitchCase="4">Transito</span>
+                            <span *ngSwitchCase="5">Violencia</span>
+                        </td>
+                        <th>Lesión del Accidente:</th>
+                        <td [ngSwitch]="accidente.lesion">
+                            <span *ngSwitchCase="1">Amputacion</span>
+                            <span *ngSwitchCase="2">Aplastamiento</span>
+                            <span *ngSwitchCase="3">Asfixia</span>
+                            <span *ngSwitchCase="4">Conmocion</span>
+                            <span *ngSwitchCase="5">Efecto de electricidad</span>
+                            <span *ngSwitchCase="6">Efectos del Clima</span>
+                            <span *ngSwitchCase="7">Envenenamiento</span>
+                            <span *ngSwitchCase="8">Esguince</span>
+                            <span *ngSwitchCase="9">Fractura</span>
+                            <span *ngSwitchCase="10">Golpe</span>
+                            <span *ngSwitchCase="11">Herida</span>
+                            <span *ngSwitchCase="12">Intoxicacion</span>
+                            <span *ngSwitchCase="13">Quemadura</span>
+                            <span *ngSwitchCase="14">Salpicadura</span>
+                            <span *ngSwitchCase="15">Torcedura</span>
+                            <span *ngSwitchCase="16">Trauma</span>
+                        </td>
+                        <th>Parte Afectada:</th>
+                        <td [ngSwitch]="accidente.parte">
+                            <span *ngSwitchCase="1">Abdomen</span>
+                            <span *ngSwitchCase="2">Cabeza</span>
+                            <span *ngSwitchCase="3">Cara</span>
+                            <span *ngSwitchCase="4">Cuello</span>
+                            <span *ngSwitchCase="5">Lesiones Generales</span>
+                            <span *ngSwitchCase="6">Manos</span>
+                            <span *ngSwitchCase="7">Miembros Inferiores</span>
+                            <span *ngSwitchCase="8">Miembros Superiores</span>
+                            <span *ngSwitchCase="9">Ojos</span>
+                            <span *ngSwitchCase="10">Pies</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Agente:</th>
+                        <td [ngSwitch]="accidente.agente">
+                            <span *ngSwitchCase="1">No Clasificado</span>
+                            <span *ngSwitchCase="2">Ambiente del Trabajo</span>
+                            <span *ngSwitchCase="3">Animales</span>
+                            <span *ngSwitchCase="4">Aparatos</span>
+                            <span *ngSwitchCase="5">Caidas de Personas</span>
+                            <span *ngSwitchCase="6">Herramientas</span>
+                            <span *ngSwitchCase="7">Maquinarias y/o Equipos</span>
+                        </td>
+                        <th>Mecanismo:</th>
+                        <td [ngSwitch]="accidente.mecanismo">
+                            <span *ngSwitchCase="1">Atrapamiento</span>
+                            <span *ngSwitchCase="2">Caidas de Objetos</span>
+                            <span *ngSwitchCase="3">Caidas de Personas</span>
+                            <span *ngSwitchCase="4">Exposicion de electricidad</span>
+                            <span *ngSwitchCase="5">Exposicion de Radiacion</span>
+                            <span *ngSwitchCase="6">Exposicion de Temperatura</span>
+                            <span *ngSwitchCase="7">Pisadas</span>
+                            <span *ngSwitchCase="8">Choques</span>
+                            <span *ngSwitchCase="9">Golpes</span>
+                            <span *ngSwitchCase="10">Sobre esfuerzo</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Descripción:</th>
+                        <td colspan="5">{{accidente.descripcion}}</td>
+                    </tr>
+                    <tr>
+                        <th>Hubo Incapacidad:</th>
+                        <td>{{accidente.incapacidad? 'Si': 'No'}}</td>
+                        <th [class.is-hidden]="!accidente.incapacidad">Días de Incapacidad</th>
+                        <td [class.is-hidden]="!accidente.incapacidad">{{accidente.diasincapacidad}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="display: flex;flex-wrap: wrap;">
+                <div *ngFor="let image of imagenes; let i = index" style="width: 200px;margin: 5px">
+                    <div *ngIf="image.url != ''" class="image-4-3 notification"
+                        [style.background]="'url(http://localhost:3000/images/'+image.nombre+')'"
+                        [style.background-position]="'center'" [style.background-size]="'cover'"
+                        [style.margin-bottom]="'0'">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p><strong>Nota</strong> Al momento de descargar dar click en "Más opciones" y luego marcar la casilla "Gráficos de fondo".</p><br>
+        <div class="field">
+            <div class="control">
+                <button (click)="print()" class="button is-link">Descargar</button>
+            </div>
+        </div>
+    </div>
+</section>

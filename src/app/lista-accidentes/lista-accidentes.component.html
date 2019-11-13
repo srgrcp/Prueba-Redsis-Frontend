@@ -1,0 +1,23 @@
+<section class="section">
+    <div class="container">
+        <h1 class="title">Accidentes</h1>
+        <table class="table is-fullwidth is-hoverable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Empleado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr routerLink="/accidente/{{acc.id}}" class="is-unselectable" *ngFor="let acc of list" style="cursor: pointer;">
+                    <td>{{acc.id}}</td>
+                    <td>{{acc.fecha | date}}</td>
+                    <td>{{acc.descripcion}}</td>
+                    <td>{{acc.empleado}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
